@@ -7,10 +7,10 @@ Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
     return redirect()->back();
-});
+})->name('language');
 
-Volt::route('/blog/{category?}', 'home')->name('blog');
-
+Volt::route('/blog/{category?}', 'blog')->name('blog');
+Volt::route('/', 'home')->name('home');
 Volt::route('/blog/post/{post}', 'post.single')->name('blog.post');
 
 Route::view('dashboard', 'dashboard')

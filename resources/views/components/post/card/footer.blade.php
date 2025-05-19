@@ -3,7 +3,7 @@
         @foreach ($categories as $category)
         <li>
             <a href="{{route('blog', ['category' => $category->id])}}" class="text-2xl font-bold text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
-                {{ $category->name }}
+                {{ $category->translation()->name }}
             </a>
         </li>
         @endforeach

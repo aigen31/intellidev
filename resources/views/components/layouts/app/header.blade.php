@@ -25,17 +25,23 @@
         <flux:spacer />
 
         <flux:navbar class="me-1.5 space-x-0.5 rtl:space-x-reverse py-0!">
-            <flux:tooltip :content="__('Search')" position="bottom">
-                <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#" :label="__('Search')" />
-            </flux:tooltip>
-            <flux:tooltip :content="__('Documentation')" position="bottom">
-                <flux:navbar.item
-                    class="h-10 max-lg:hidden [&>div>svg]:size-5"
-                    icon="book-open-text"
-                    href="https://laravel.com/docs/starter-kits"
-                    target="_blank"
-                    label="Documentation" />
-            </flux:tooltip>
+            <div class="relative" x-data="{
+                    open: false
+                }">
+                <div class="cursor-pointer flex gap-2" @click="open = !open">
+                    <flux:icon.language />
+                </div>
+                <ul x-show="open" class="absolute mt-2 z-10 rounded-md bg-white shadow-lg left-[50%] translate-x-[-50%]" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                    @foreach (config('app.available_locales') as $locale => $slug)
+                    <li class="text-center">
+                        <a href="{{route('language', ['locale' => $slug])}}" class="{{ $locale === app()->getLocale() ? 'text-blue-500' : '' }} block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem" tabindex="-1" id="menu-item-0">
+                            {{ $slug }}
+                        </a>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+
         </flux:navbar>
         @auth
         <!-- Desktop User Menu -->

@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\Post;
+use App\Models\PostTranslation;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,8 +24,6 @@ class PostFactory extends Factory
          * Todo: change category relationship
          */
         return [
-            'title' => fake()->sentence(),
-            'content' => fake()->paragraph(),
             'thumbnail' => 'https://picsum.photos/700/500',
             'user_id' => User::factory(),
             'status' => 1,

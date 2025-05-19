@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        /**
-         * Todo: change category relationship
-         */
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('category_translations', function (Blueprint $table) {
             $table->id();
-            $table->string('thumbnail')->nullable();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->tinyInteger('status');
+            $table->string('locale');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('category_translations');
     }
 };

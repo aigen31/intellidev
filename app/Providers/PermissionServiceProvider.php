@@ -16,16 +16,16 @@ class PermissionServiceProvider extends OrchidServiceProvider
     {
         return [
             ItemPermission::group('comment')
-                ->addPermission('create', 'Comment create')
-                ->addPermission('edit', 'Comment edit')
-                ->addPermission('delete', 'Comment delete'),
+                ->addPermission('comment.create', 'Comment create')
+                ->addPermission('comment.edit', 'Comment edit')
+                ->addPermission('comment.delete', 'Comment delete'),
             ItemPermission::group('post')
                 ->addPermission('own.create', 'Own post create')
                 ->addPermission('own.edit', 'Own post edit')
                 ->addPermission('own.delete', 'Own post delete')
-                ->addPermission('create', 'Post create')
-                ->addPermission('edit', 'Post edit')
-                ->addPermission('delete', 'Post delete'),
+                ->addPermission('post.create', 'Post create')
+                ->addPermission('post.edit', 'Post edit')
+                ->addPermission('post.delete', 'Post delete'),
         ];
     }
 }

@@ -34,6 +34,14 @@ class Post extends Model
         return $this->translations()->where('locale', $locale)->first();
     }
 
+    public function comments(): HasMany {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function comment(): HasOne {
+        return $this->hasOne(Comment::class);
+    }
+
     protected function casts(): array
     {
         return [

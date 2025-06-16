@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\PostTranslationController;
-use App\Services\ContentService;
+use App\Services\ReadTimeService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,11 +16,11 @@ class PostTranslation extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->read_time = ContentService::getReadTime($model->content);
+            $model->read_time = ReadTimeService::calculate($model->content);
         });
 
         static::updating(function ($model) {
-            $model->read_time = ContentService::getReadTime($model->content);
+            $model->read_time = ReadTimeService::calculate($model->content);
         });
     }
 }

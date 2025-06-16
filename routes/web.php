@@ -13,15 +13,21 @@ Volt::route('/blog/{category?}', 'blog')->name('blog');
 Volt::route('/', 'home')->name('home');
 Volt::route('/blog/post/{post}', 'post.single')->name('blog.post');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
 Route::middleware(['auth'])->group(function () {
-    Route::redirect('settings', 'settings/profile');
-    Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
-    Volt::route('settings/password', 'settings.password')->name('settings.password');
-    Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+    Volt::route('/dashboard', 'dashboard')
+        ->middleware(['auth', 'verified'])
+        ->name('dashboard');
+    Volt::route('/profile', 'profile.show')->name('profile.show');
 });
 
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';
+
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
